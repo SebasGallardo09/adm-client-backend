@@ -1,29 +1,34 @@
 const { responseSuccess, responseError } = require("../utils/responses");
+const clientEntity = require("../entity/client");
 
-const getClientId = (req, res, next) => {
-    console.log("get by id")
-    return responseSuccess(res, {});
-    
+const getClientId = async (req, res, next) => {
+    const result = await clientEntity.getById(req.params.id);
+    return responseSuccess(res, { objeto: result });    
 };
 
-const getClient = (req, res, next) => {
-    console.log("get client")
-    return responseSuccess(res, {});
+const getClient = async (req, res, next) => {
+    const result = await clientEntity.get();
+    return responseSuccess(res, { lista: result });
 };
 
-const createClient = (req, res, next) => {
-    console.log("create")
-    return responseSuccess(res, {});
+const createClient = async (req, res, next) => {
+    try {
+        const result = await clientEntity.save(req.body);
+        return responseSuccess(res, { identity: result.identity, nameClient: result.nameClient });
+    } catch (e) {
+        return responseError(res, { });
+    }
 };
 
-const updateClient = (req, res, next) => {
-    console.log("update")
-    return responseSuccess(res, {});
+const updateClient = async (req, res, next) => {
+    const result = await clientEntity.update(req.params.id, req.body);
+    return responseSuccess(res, { objeto: result });
 };
 
-const deleteClient = (req, res, next) => {
-    console.log("delete")
-    return responseSuccess(res, {});
+const deleteClient = async (req, res, next) => {
+    console.log(req.params.id)
+    const result = await clientEntity.remove(req.params.id);
+    return responseSuccess(res, { objeto: result });
 };
 
 module.exports = {

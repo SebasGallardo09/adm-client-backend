@@ -11,7 +11,7 @@ const responseSuccess = ((res, objectResponse) => (
     res.status(objectResponse.code || 200).json({
         status: objectResponse.code || 200,
         message: objectResponse.message || "Process is complete",
-        result: objectResponse.result,
+        result: objectResponse,
     })
 )); 
 
