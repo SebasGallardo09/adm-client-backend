@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 const uuid = require('node-uuid');
+
 const clientModel = new Schema(
   {
     identity: {
@@ -23,6 +24,6 @@ const clientModel = new Schema(
 );
 
 clientModel.plugin(mongoosePaginate);
-const modelClient = model("Client", clientModel);
+const modelClient = model('Client', clientModel);
 modelClient.paginate().then({});
 module.exports = modelClient;

@@ -5,6 +5,8 @@
   "author": "Erick Gallardo",
   "license": "ISC",
   "main": "server.js",
+  "type": "commonjs",
+
   "keywords": [
     "clientes",
     "nodejs",
