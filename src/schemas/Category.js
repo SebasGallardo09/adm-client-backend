@@ -1,19 +1,15 @@
 const { Schema, model } = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-const clientModel = new Schema(
+const categorySchema = new Schema(
     {
         identity: {
             type: String,
             required: true,
             unique: true,
         },
-        nameClient: {
+        name: {
             type: String,
-        },
-        dateCreated: {
-            type: Date,
-            default: Date.now,
         },
         status: {
             type: Boolean,
@@ -23,7 +19,7 @@ const clientModel = new Schema(
     { versionKey: false },
 );
 
-clientModel.plugin(mongoosePaginate);
-const modelClient = model('Client', clientModel);
+categorySchema.plugin(mongoosePaginate);
+const modelClient = model('Category', categorySchema);
 modelClient.paginate().then({});
 module.exports = modelClient;

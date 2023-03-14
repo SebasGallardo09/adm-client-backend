@@ -1,5 +1,7 @@
 const express = require('express');
-const {createClient, updateClient, getClientId, getClient, deleteClient, getClientPages} = require('../controller/client');
+const {
+    createClient, updateClient, getClientId, getClient, deleteClient, getClientPages,
+} = require('../controller/client');
 
 const router = express.Router();
 
