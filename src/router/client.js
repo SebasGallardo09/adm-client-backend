@@ -6,9 +6,9 @@ const {
 const router = express.Router();
 
 router.get('/', getClient);
+router.post('/', createClient);
 router.get('/paginate', getClientPages);
 router.get('/identity/:id', getClientId);
-router.post('/', createClient);
 router.put('/:id', updateClient);
 router.delete('/:id', deleteClient);
 

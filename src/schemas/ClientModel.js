@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+// const CategorySchema = require('./Category');
 
 const clientModel = new Schema(
     {
@@ -19,8 +20,12 @@ const clientModel = new Schema(
             type: Boolean,
             default: true,
         },
+        category: {
+            type: [Schema.Types.ObjectId],
+            ref: 'Category',
+        },
     },
-    { versionKey: false },
+    { versionKey: false, autoCreate: false, autoIndex: false },
 );
 
 clientModel.plugin(mongoosePaginate);

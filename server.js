@@ -5,7 +5,7 @@ const http = require('http');
 
 /* Import routers */
 const clientRte = require('./src/router/client');
-const categoryRte = require('./src/router/client');
+const categoryRte = require('./src/router/category');
 
 const app = express();
 

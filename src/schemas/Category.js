@@ -16,10 +16,10 @@ const categorySchema = new Schema(
             default: true,
         },
     },
-    { versionKey: false },
+    { versionKey: false, autoCreate: false, autoIndex: false },
 );
 
 categorySchema.plugin(mongoosePaginate);
-const modelClient = model('Category', categorySchema);
-modelClient.paginate().then({});
-module.exports = modelClient;
+const modelCategory = model('Category', categorySchema);
+modelCategory.paginate().then({});
+module.exports = modelCategory;

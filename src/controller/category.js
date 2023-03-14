@@ -1,21 +1,21 @@
 const uuid = require('node-uuid');
 const { responseSuccess } = require('../utils/responses');
-const categoryEntity = require('../entity/client');
+const categoryEntity = require('../entity/category');
 
 const createCategory = async (req, res) => {
-    const objectInsert = Object.assign(req.body, { identity: uuid.v4() });
+    const objectInsert = Object.assign(req.body, { identity: uuid.v4(), status: true });
     const result = await categoryEntity.save(objectInsert);
     return responseSuccess(res, { identity: result.identity, name: result.name });
 };
 
 const getAllCategory = async (req, res) => {
-    const result = await categoryEntity.get();
-    return responseSuccess(res, { lista: result });
+    const result = await categoryEntity.getAll();
+    return responseSuccess(res, { objeto: result });
 };
 
 const getIdCategory = async (req, res) => {
     const result = await categoryEntity.getById(req.params.id);
-    return responseSuccess(res, { lista: result });
+    return responseSuccess(res, { objeto: result });
 };
 
 const updateCategory = async (req, res) => {

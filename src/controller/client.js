@@ -8,8 +8,8 @@ const getClientId = async (req, res) => {
 };
 
 const getClient = async (req, res) => {
-    const result = await clientEntity.get();
-    return responseSuccess(res, { lista: result });
+    const result = await clientEntity.getAll();
+    return responseSuccess(res, { objeto: result });
 };
 
 const createClient = async (req, res) => {
