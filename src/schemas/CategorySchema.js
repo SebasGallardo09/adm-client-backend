@@ -16,7 +16,7 @@ const categorySchema = new Schema(
             default: true,
         },
     },
-    { versionKey: false, autoCreate: false, autoIndex: false },
+    { versionKey: false },
 );
 
 categorySchema.plugin(mongoosePaginate);

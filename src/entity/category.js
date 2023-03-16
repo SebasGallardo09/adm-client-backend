@@ -1,4 +1,4 @@
-const CategorySchema = require('../schemas/Category');
+const CategorySchema = require('../schemas/CategorySchema');
 
 const save = async (obj) => (new CategorySchema(obj).save());
 const getAll = async () => (CategorySchema.find());

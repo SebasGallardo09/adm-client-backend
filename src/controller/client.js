@@ -1,6 +1,7 @@
 const uuid = require('node-uuid');
 const { responseSuccess, responseError } = require('../utils/responses');
 const clientEntity = require('../entity/client');
+const userCtrl = require('../controller/user');
 
 const getClientId = async (req, res) => {
     const result = await clientEntity.getById(req.params.id);
@@ -14,10 +15,17 @@ const getClient = async (req, res) => {
 
 const createClient = async (req, res) => {
     try {
-        const objectInsert = Object.assign(req.body, { identity: uuid.v4() });
+        const userResult = await userCtrl.create(req.body.user);
+        if (userResult.code === 400) throw userResult;
+        const objectInsert = {
+            identity: uuid.v4(),
+            user: userResult,
+            category: req.body.category,
+        };
         const result = await clientEntity.save(objectInsert);
         return responseSuccess(res, { identity: result.identity, nameClient: result.nameClient });
     } catch (e) {
+        if (e.code === 400) return responseError(res, e);
         return responseError(res, { });
     }
 };
@@ -36,6 +44,7 @@ const getClientPages = async (req, res) => {
     const options = {
         page: req.query.page,
         limit: req.query.limit,
+        populate: 'category',
     };
     const result = await clientEntity.getClientPages(options);
     return responseSuccess(res, { objeto: result });

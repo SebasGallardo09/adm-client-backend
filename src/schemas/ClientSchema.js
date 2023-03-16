@@ -20,12 +20,18 @@ const clientModel = new Schema(
             type: Boolean,
             default: true,
         },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            require: true,
+        },
         category: {
-            type: [Schema.Types.ObjectId],
+            type: Schema.Types.ObjectId,
             ref: 'Category',
+            required: true,
         },
     },
-    { versionKey: false, autoCreate: false, autoIndex: false },
+    { versionKey: false },
 );
 
 clientModel.plugin(mongoosePaginate);
